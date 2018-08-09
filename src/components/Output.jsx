@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Output = props => {
   return (
-    <span>{props.result}</span>
+    <output>{props.result}</output>
   )
 }
 

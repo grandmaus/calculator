@@ -10,8 +10,8 @@ const ButtonOperand = props => {
 }
 
 ButtonOperand.propTypes = {
-  value: PropTypes.number.isRequired,
-  content: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   clickHandlerEvent: PropTypes.func.isRequired
 }
 
