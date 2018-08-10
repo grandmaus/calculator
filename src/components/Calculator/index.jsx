@@ -1,8 +1,10 @@
 import React from 'react'
 
-import ButtonOperand from './ButtonOperand'
-import ButtonOperator from './ButtonOperator'
-import Output from './Output'
+import ButtonOperand from '../ButtonOperand'
+import ButtonOperator from '../ButtonOperator'
+import Output from '../Output'
+
+import { ButtonsWrapper, CalculatorWrapper } from './styled.js'
 
 const mathOpToSymb = {
   PLUS: '+',
@@ -205,29 +207,29 @@ class Calculator extends React.Component {
     const result = this.state.result
 
     return (
-      <div>
+      <CalculatorWrapper>
         <Output result={result || output} />
-        <div>
-          <ButtonOperator value='c' content='C' clickHandlerEvent={this.cleanClickHandler} />
-          <ButtonOperator value='sqrt' content='&#8730;' clickHandlerEvent={this.sqrtClickHandler} />
-          <ButtonOperator value='.' content='.' clickHandlerEvent={this.operandClickHandler} />
-          <ButtonOperator value='/' content='/' clickHandlerEvent={this.operatorClickHandler} />
-          <ButtonOperator value='*' content='*' clickHandlerEvent={this.operatorClickHandler} />
-          <ButtonOperator value='+' content='+' clickHandlerEvent={this.operatorClickHandler} />
-          <ButtonOperator value='-' content='-' clickHandlerEvent={this.operatorClickHandler} />
-          <ButtonOperator value='=' content='=' clickHandlerEvent={this.equalsClickHandler} />
+        <ButtonsWrapper>
+          <ButtonOperator large value='c' content='C' clickHandlerEvent={this.cleanClickHandler} />
+          <ButtonOperator large value='sqrt' content='&#8730;' clickHandlerEvent={this.sqrtClickHandler} />
           <ButtonOperand value='7' content='7' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='8' content='8' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='9' content='9' clickHandlerEvent={this.operandClickHandler} />
+          <ButtonOperator value='/' content='/' clickHandlerEvent={this.operatorClickHandler} />
           <ButtonOperand value='4' content='4' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='5' content='5' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='6' content='6' clickHandlerEvent={this.operandClickHandler} />
+          <ButtonOperator value='*' content='&#8727;' clickHandlerEvent={this.operatorClickHandler} />
           <ButtonOperand value='1' content='1' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='2' content='2' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='3' content='3' clickHandlerEvent={this.operandClickHandler} />
+          <ButtonOperator value='-' content='&#8722;' clickHandlerEvent={this.operatorClickHandler} />
+          <ButtonOperator value='.' content='&#8729;' clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value='0' content='0' clickHandlerEvent={this.operandClickHandler} />
-        </div>
-      </div>
+          <ButtonOperator value='=' content='=' clickHandlerEvent={this.equalsClickHandler} />
+          <ButtonOperator value='+' content='+' clickHandlerEvent={this.operatorClickHandler} />
+        </ButtonsWrapper>
+      </CalculatorWrapper>
     )
   }
 }

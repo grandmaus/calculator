@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { OutputStyled } from './styled.js'
+
 const Output = props => {
   return (
-    <output>{props.result}</output>
+    <OutputStyled>
+      {props.result}
+    </OutputStyled>
   )
 }
 

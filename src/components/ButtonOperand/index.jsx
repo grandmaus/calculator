@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { ButtonOperandStyled } from './styled.js'
+
 const ButtonOperand = props => {
   return (
-    <button type='button' value={props.value} onClick={props.clickHandlerEvent}>
+    <ButtonOperandStyled type='button' value={props.value} onClick={props.clickHandlerEvent}>
       {props.content}
-    </button>
+    </ButtonOperandStyled>
   )
 }
 

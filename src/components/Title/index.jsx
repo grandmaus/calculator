@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { TitleStyled } from './styled.js'
+
 const Title = props => {
   return (
-    <h1>{props.content}</h1>
+    <TitleStyled>
+      {props.content}
+    </TitleStyled>
   )
 }
 
@@ -12,7 +16,7 @@ Title.propTypes = {
 }
 
 Title.defaultProps = {
-  content: 'Калькулятор'
+  content: 'Calculator based ReactJS'
 }
 
 export default Title
