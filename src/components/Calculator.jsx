@@ -10,35 +10,75 @@ class Calculator extends React.Component {
     super(props)
 
     this.state = {
-      leftOperand: null,
-      rightOperand: null,
-      operator: null,
-      result: null
+      leftOperand: '',
+      rightOperand: '',
+      operator: '',
+      result: null,
+      prevResult: null
+    }
+
+    this.pattern = new RegExp('([+*/-])')
+
+    this.mathOpToSymb = {
+      PLUS: '+',
+      MINUS: '-',
+      DIVIDE: '/',
+      MULTIPLY: '*'
+    }
+
+    this.MathOperations = {
+      [this.mathOpToSymb.PLUS]: (a, b) => a + b,
+      [this.mathOpToSymb.MINUS]: (a, b) => a - b,
+      [this.mathOpToSymb.DIVIDE]: (a, b) => a / b,
+      [this.mathOpToSymb.MULTIPLY]: (a, b) => a * b
     }
 
     this.operandClickHandler = this.operandClickHandler.bind(this)
     this.operatorClickHandler = this.operatorClickHandler.bind(this)
-    console.log(this.state.result)
+    this.equalsClickHandler = this.equalsClickHandler.bind(this)
   }
 
   operandClickHandler (e) {
-    let leftOperand = this.state.leftOperand
-    let rightOperand = this.state.rightOperand
+    const val = e.target.value
 
-    this.setState({
-      leftOperand: leftOperand + e.target.value
-    })
-    console.log(leftOperand)
+    if (this.state.operator) {
+      this.setState(prevState => ({
+        rightOperand: prevState.rightOperand + val,
+        result: prevState.leftOperand + this.state.operator + prevState.rightOperand + val
+      }))
+    } else {
+      this.setState(prevState => ({
+        leftOperand: prevState.leftOperand + val,
+        result: prevState.leftOperand + val
+      }))
+    }
   }
 
   operatorClickHandler (e) {
-    let operator = this.state.operator
+    const val = e.target.value
 
-    if (this.state.leftOperand !== null) {
+    if (this.state.leftOperand) {
       this.setState({
-        operator: e.target.value
+        operator: val,
+        rightOperand: '',
+        result: this.state.leftOperand + val
       })
-      console.log(operator)
+    }
+  }
+
+  equalsClickHandler (e) {
+    let result = this.state.result
+    let array = result.split(this.pattern)
+    result = this.MathOperations[array[1]](+array[0], +array[2])
+
+    if (this.state.rightOperand) {
+      this.setState({
+        leftOperand: '',
+        rightOperand: '',
+        operator: '',
+        result: result,
+        prevResult: result
+      })
     }
   }
 
@@ -56,7 +96,7 @@ class Calculator extends React.Component {
           <ButtonOperator value='*' content='*' clickHandlerEvent={this.operatorClickHandler} />
           <ButtonOperator value='+' content='+' clickHandlerEvent={this.operatorClickHandler} />
           <ButtonOperator value='-' content='-' clickHandlerEvent={this.operatorClickHandler} />
-          <ButtonOperator value='=' content='=' clickHandlerEvent={this.operatorClickHandler} />
+          <ButtonOperator value='=' content='=' clickHandlerEvent={this.equalsClickHandler} />
           <ButtonOperand value={7} content={7} clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value={8} content={8} clickHandlerEvent={this.operandClickHandler} />
           <ButtonOperand value={9} content={9} clickHandlerEvent={this.operandClickHandler} />
@@ -72,9 +112,5 @@ class Calculator extends React.Component {
     )
   }
 }
-
-// Calculator.propTypes = {
-//   clickHandler: PropTypes.func.isRequired
-// }
 
 export default Calculator

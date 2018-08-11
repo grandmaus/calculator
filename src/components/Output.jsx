@@ -8,7 +8,10 @@ const Output = props => {
 }
 
 Output.propTypes = {
-  result: PropTypes.string
+  result: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 }
 
 Output.defaultProps = {
