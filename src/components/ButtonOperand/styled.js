@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const ButtonOperandStyled = styled.button`
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   padding: 10px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;

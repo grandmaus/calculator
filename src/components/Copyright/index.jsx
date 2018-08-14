@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { CopyrightStyled } from './styled.js'
 
-const ButtonOperand = props => {
+const Copyright = props => {
   return (
     <CopyrightStyled href={props.href} target='_blank' rel='noopener noreferrer'>
       {props.content}
@@ -11,9 +11,9 @@ const ButtonOperand = props => {
   )
 }
 
-ButtonOperand.propTypes = {
+Copyright.propTypes = {
   href: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired
 }
 
-export default ButtonOperand
+export default Copyright

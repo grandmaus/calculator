@@ -22,9 +22,8 @@ const MathOperations = {
   [mathOpToSymb.SQRT]: (a) => Math.sqrt(a)
 }
 
-const pattern = /^-?(\d+)?\.?(\d+)?$/
-const patternOperator = /[- + * /]/
-const patternOperand = /[- .]|\d/
+const pattern = /^-?(\d+)?[.,]?(\d+)?$/
+const patternOperator = /[-+*/]/
 
 class Calculator extends React.Component {
   constructor (props) {
@@ -56,8 +55,7 @@ class Calculator extends React.Component {
   }
 
   keyPressOperandHandler (e) {
-    const val = String.fromCharCode(e.keyCode)
-    const validatedVal = patternOperand.test(val)
+    const val = String.fromCharCode(e.keyCode).replace(',', '.')
     const validatedLeftOperand = pattern.test(this.state.leftOperand + val)
     const validatedRightOperand = pattern.test(this.state.rightOperand + val)
 
@@ -70,11 +68,11 @@ class Calculator extends React.Component {
       this.setState(prevState => ({
         rightOperand: '0' + val
       }))
-    } else if (this.state.operator && validatedVal && validatedRightOperand && val !== '-') {
+    } else if (this.state.operator && validatedRightOperand && val !== '-') {
       this.setState(prevState => ({
         rightOperand: prevState.rightOperand + val
       }))
-    } else if (validatedVal && validatedLeftOperand && !this.state.rightOperand) {
+    } else if (validatedLeftOperand && !this.state.rightOperand) {
       this.setState(prevState => ({
         leftOperand: prevState.leftOperand + val,
         result: ''
@@ -104,6 +102,8 @@ class Calculator extends React.Component {
 
     if (e.keyCode === enterKeyCode) {
       this.equalsClickHandler()
+      e.preventDefault()
+      e.stopPropagation()
     }
   }
 

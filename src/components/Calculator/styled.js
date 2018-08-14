@@ -7,7 +7,7 @@ export const ButtonsWrapper = styled.div`
 `
 
 export const CalculatorWrapper = styled.div`
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
   border: 4px solid #bbbbbb;
 `

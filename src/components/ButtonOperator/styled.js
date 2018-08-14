@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const ButtonOperatorStyled = styled.button`
   display: block;
-  width: ${props => props.large ? '200px' : '100px'};
-  height: 100px;
+  width: ${props => props.large ? '150px' : '75px'};
+  height: 75px;
   padding: 10px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;

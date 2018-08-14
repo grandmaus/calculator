@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const OutputStyled = styled.output`
   display: block;
-  padding: 30px;
+  padding: 20px;
   font-size: 28px;
   text-align: right;
   user-select: none;
